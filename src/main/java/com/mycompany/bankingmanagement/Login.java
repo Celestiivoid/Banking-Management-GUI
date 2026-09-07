@@ -20,6 +20,7 @@ public class Login {
     private ArrayList<Account> accounts;
     
     public Login(ArrayList<Account> accounts) {
+        this.accounts  = accounts;
         setupGUI();
     }
     public void setupGUI() {
@@ -41,7 +42,19 @@ public class Login {
         nameField.setColumns(20);
         
         JButton button1 = new JButton("Login");
-        button1.addActionListener( e-> loginAccount());
+        button1.addActionListener( e-> {
+            String nameInput = nameField.getText();
+        
+            for(Account account: accounts) {
+                if(nameInput.equals(account.getAccNm())) {
+                    new BankManagement();
+                    JOptionPane.showMessageDialog(frame,"Login successful!","Success!",JOptionPane.INFORMATION_MESSAGE);
+                return;
+                }
+            }
+            JOptionPane.showMessageDialog(frame,"Login unsucessful!","Warning!",JOptionPane.WARNING_MESSAGE);
+            return;
+        });
         
         JButton button2 = new JButton("to Account Creation");
         button2.addActionListener( e-> {
@@ -62,18 +75,4 @@ public class Login {
         frame.add(mainPanel);
         frame.setVisible(true);
     }
-    public void loginAccount() {
-        String nameInput = nameField.getText();
-        
-        for(Account account: accounts) {
-            if(nameInput.equals(account.getAccNm())) {
-                new BankManagement();
-                JOptionPane.showMessageDialog(frame,"Login successful!","Success!",JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(frame,"Login unsucessful!","Warning!",JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    
 }
