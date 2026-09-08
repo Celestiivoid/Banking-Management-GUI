@@ -19,8 +19,16 @@ import java.util.ArrayList;
 
 public class BankManagement {
     private JFrame frame;
+    private JTextField welcomeField;
+    private String username;
+    private JTextField balanceField;
+    private JTextField nameField;
+    private ArrayList<Account> accounts; 
     
-    public BankManagement() {
+    
+    public BankManagement(String username,ArrayList<Account> accounts) {
+        this.username = username;
+        this.accounts = accounts;
         setupGUI();
     }
     
@@ -32,6 +40,50 @@ public class BankManagement {
         
         JPanel formPanel = new JPanel();
         JPanel mainPanel = new JPanel();
+        JPanel welcomePanel = new JPanel();
+        
+        welcomePanel.setLayout(new GridLayout(1,2));
+        formPanel.setLayout(new GridLayout(2,2));
+        mainPanel.setLayout(new GridLayout(3,1));
+        
+        welcomeField = new JTextField();
+        welcomeField.setText("Welcome, " + username + "!");
+        welcomeField.setEditable(false);
+        
+        JLabel nameLabel = new JLabel("Account name: ");
+        nameField = new JTextField();
+        for(Account account : accounts) {
+            if(username.equals(account.getAccNm())) {
+                nameField.setText(account.getAccNm());
+                break;
+            }
+        }
+        nameField.setEditable(false);
+        nameField.setColumns(20);
+        
+        JLabel balanceLabel = new JLabel("Balance: ");
+        balanceField = new JTextField();
+        for(Account account : accounts) {
+            if(username.equals(account.getAccNm())) {
+                balanceField.setText(String.valueOf(account.getInitialDep()));
+                break;
+            }
+        }
+        balanceField.setEditable(false);
+        balanceField.setColumns(20);
+        
+        
+        
+        welcomePanel.add(welcomeField);
+        
+        formPanel.add(nameLabel);
+        formPanel.add(nameField);
+        
+        formPanel.add(balanceLabel);
+        formPanel.add(balanceField);
+        
+        mainPanel.add(welcomePanel);
+        mainPanel.add(formPanel);
         
         frame.add(mainPanel);
         frame.setVisible(true);

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Login {
     private JFrame frame;
     private JTextField nameField;
+    private JTextField noField;
     private ArrayList<Account> accounts;
     
     public Login(ArrayList<Account> accounts) {
@@ -33,7 +34,7 @@ public class Login {
         JPanel mainPanel = new JPanel();
         JPanel buttonPanel = new JPanel();
         
-        formPanel.setLayout(new GridLayout(1,2));
+        formPanel.setLayout(new GridLayout(2,2));
         buttonPanel.setLayout(new GridLayout(2,2));
         mainPanel.setLayout(new GridLayout(3,1));
         
@@ -41,13 +42,20 @@ public class Login {
         nameField = new JTextField();
         nameField.setColumns(20);
         
+        JLabel accNoLabel = new JLabel("Account Number: ");
+        noField = new JTextField();
+        noField.setColumns(20);
+        
         JButton button1 = new JButton("Login");
         button1.addActionListener( e-> {
             String nameInput = nameField.getText();
+            String numberInput = noField.getText();
         
             for(Account account: accounts) {
-                if(nameInput.equals(account.getAccNm())) {
-                    new BankManagement();
+                int convertedInput = Integer.parseInt(numberInput);
+                if(nameInput.equals(account.getAccNm()) && convertedInput == account.getAccNo()) {
+                    new BankManagement(nameInput,accounts);
+                    frame.dispose();
                     JOptionPane.showMessageDialog(frame,"Login successful!","Success!",JOptionPane.INFORMATION_MESSAGE);
                 return;
                 }
@@ -65,6 +73,9 @@ public class Login {
         
         formPanel.add(nameLabel);
         formPanel.add(nameField);
+        
+        formPanel.add(accNoLabel);
+        formPanel.add(noField);
         
         buttonPanel.add(button1);
         buttonPanel.add(button2);
