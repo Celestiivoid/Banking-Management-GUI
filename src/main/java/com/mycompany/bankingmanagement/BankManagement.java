@@ -41,10 +41,12 @@ public class BankManagement {
         JPanel formPanel = new JPanel();
         JPanel mainPanel = new JPanel();
         JPanel welcomePanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         
         welcomePanel.setLayout(new GridLayout(1,2));
         formPanel.setLayout(new GridLayout(2,2));
         mainPanel.setLayout(new GridLayout(3,1));
+        buttonPanel.setLayout(new GridLayout(1,2));
         
         welcomeField = new JTextField();
         welcomeField.setText("Welcome, " + username + "!");
@@ -72,7 +74,10 @@ public class BankManagement {
         balanceField.setEditable(false);
         balanceField.setColumns(20);
         
-        
+        JButton button1 = new JButton("Back to login");
+        button1.addActionListener( e -> {
+            new Login(accounts);
+        });
         
         welcomePanel.add(welcomeField);
         
@@ -82,10 +87,15 @@ public class BankManagement {
         formPanel.add(balanceLabel);
         formPanel.add(balanceField);
         
+        buttonPanel.add(button1);
+        
         mainPanel.add(welcomePanel);
         mainPanel.add(formPanel);
+        mainPanel.add(buttonPanel);
         
         frame.add(mainPanel);
         frame.setVisible(true);
     }
+    
+    
 }
