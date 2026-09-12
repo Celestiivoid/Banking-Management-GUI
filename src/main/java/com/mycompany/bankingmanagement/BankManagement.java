@@ -76,7 +76,7 @@ public class BankManagement {
         
         JButton button1 = new JButton("Deposit");
         button1.addActionListener( e -> {
-         new Deposit();   
+         new Deposit(username,accounts);   
         });
         
         JButton button2 = new JButton("Back to login");

@@ -20,8 +20,12 @@ public class Deposit {
     private JFrame frame;
     private JTextField balance;
     private JTextField amount;
+    private ArrayList<Account> accounts;
+    private String username;
     
-    public Deposit() {
+    public Deposit(String username,ArrayList<Account> accounts) {
+        this.username = username;
+        this.accounts = accounts;
         setupGUI();
     }
     
@@ -39,6 +43,12 @@ public class Deposit {
         
         JLabel balanceLabel = new JLabel("Balance: ");
         balance = new JTextField();
+        for(Account account : accounts) {
+            if(username.equals(account.getAccNm())) {
+                balance.setText(String.valueOf(account.getInitialDep()));
+                break;
+            }
+        }
         balance.setColumns(20);
         balance.setEditable(false);
         
