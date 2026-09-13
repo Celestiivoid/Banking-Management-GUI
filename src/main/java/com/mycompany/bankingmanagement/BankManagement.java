@@ -10,11 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class BankManagement {
@@ -23,10 +18,12 @@ public class BankManagement {
     private String username;
     private JTextField balanceField;
     private JTextField nameField;
-    private ArrayList<Account> accounts; 
+    private ArrayList<Account> accounts;
+    private ArrayList<TransactionList> transaction;
     
     
-    public BankManagement(String username,ArrayList<Account> accounts) {
+    public BankManagement(String username,ArrayList<Account> accounts,ArrayList<TransactionList> transaction) {
+        this.transaction = transaction;
         this.username = username;
         this.accounts = accounts;
         setupGUI();
@@ -46,7 +43,7 @@ public class BankManagement {
         welcomePanel.setLayout(new GridLayout(1,2));
         formPanel.setLayout(new GridLayout(2,2));
         mainPanel.setLayout(new GridLayout(3,1));
-        buttonPanel.setLayout(new GridLayout(2,2));
+        buttonPanel.setLayout(new GridLayout(3,2));
         
         welcomeField = new JTextField();
         welcomeField.setText("Welcome, " + username + "!");
@@ -76,12 +73,27 @@ public class BankManagement {
         
         JButton button1 = new JButton("Deposit");
         button1.addActionListener( e -> {
-         new Deposit(username,accounts);   
+         new Deposit(username,accounts,transaction); 
+         frame.dispose();
         });
         
-        JButton button2 = new JButton("Back to login");
-        button1.addActionListener( e -> {
-            new Login(accounts);
+        JButton button2 = new JButton("Withdraw");
+        button2.addActionListener( e -> {
+            new Withdraw(username,accounts);
+            frame.dispose();
+        });
+        
+        JButton button3 = new JButton("Back to login");
+        button3.addActionListener( e -> {
+            new Login(accounts,transaction);
+            frame.dispose();
+        });
+        
+        JButton button4 = new JButton("Transaction History");
+        button4.addActionListener( e -> {
+            System.out.println("Transaction History button clicked");
+    System.out.println("Transaction list: " + transaction);
+            new TransactionHistory(username,accounts,transaction);
             frame.dispose();
         });
         
@@ -95,6 +107,8 @@ public class BankManagement {
         
         buttonPanel.add(button1);
         buttonPanel.add(button2);
+        buttonPanel.add(button3);
+        buttonPanel.add(button4);
         
         mainPanel.add(welcomePanel);
         mainPanel.add(formPanel);

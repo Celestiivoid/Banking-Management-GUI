@@ -22,6 +22,7 @@ public class CreateAccount {
     private JComboBox <String> accountType;
     private JTextField initialDep;
     
+    private ArrayList<TransactionList> transaction;
     private ArrayList<Account> accounts = new ArrayList<>();
     
     public CreateAccount(ArrayList<Account> accounts) {
@@ -63,7 +64,7 @@ public class CreateAccount {
         
         JButton button3 = new JButton("to Login");
         button3.addActionListener( e -> {
-            new Login(accounts);
+            new Login(accounts,transaction);
             frame.dispose();
         });
         

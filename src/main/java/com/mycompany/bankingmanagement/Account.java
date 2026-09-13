@@ -30,4 +30,8 @@ public class Account {
     double getInitialDep() {
         return initialDeposit;
     }
+    
+    void setInitialDep(double initialDeposit) {
+        this.initialDeposit = initialDeposit;
+    }
 }

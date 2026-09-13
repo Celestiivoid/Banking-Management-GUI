@@ -19,8 +19,10 @@ public class Login {
     private JTextField nameField;
     private JTextField noField;
     private ArrayList<Account> accounts;
+    private ArrayList<TransactionList> transaction;
     
-    public Login(ArrayList<Account> accounts) {
+    public Login(ArrayList<Account> accounts,ArrayList<TransactionList> transaction) {
+        this.transaction = transaction;
         this.accounts  = accounts;
         setupGUI();
     }
@@ -54,7 +56,7 @@ public class Login {
             for(Account account: accounts) {
                 int convertedInput = Integer.parseInt(numberInput);
                 if(nameInput.equals(account.getAccNm()) && convertedInput == account.getAccNo()) {
-                    new BankManagement(nameInput,accounts);
+                    new BankManagement(nameInput,accounts,transaction);
                     frame.dispose();
                     JOptionPane.showMessageDialog(frame,"Login successful!","Success!",JOptionPane.INFORMATION_MESSAGE);
                 return;
