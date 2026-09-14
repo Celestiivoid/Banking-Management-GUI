@@ -104,7 +104,8 @@ public class Deposit {
                 if(username.equals(account.getAccNm())) {
                     account.setInitialDep(afterbalance);
                     balance.setText(String.valueOf(account.getInitialDep()));
-                    transaction.add(new TransactionList(account.getAccNo(),convertedAmount,"Deposit"));
+                    transaction.add(new TransactionList(account.getAccNo(),"Deposit",convertedAmount));
+                    
                 }
             }
         } catch (NumberFormatException error) {

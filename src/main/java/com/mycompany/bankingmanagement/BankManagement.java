@@ -79,7 +79,7 @@ public class BankManagement {
         
         JButton button2 = new JButton("Withdraw");
         button2.addActionListener( e -> {
-            new Withdraw(username,accounts);
+            new Withdraw(username,accounts,transaction);
             frame.dispose();
         });
         
@@ -91,10 +91,13 @@ public class BankManagement {
         
         JButton button4 = new JButton("Transaction History");
         button4.addActionListener( e -> {
-            System.out.println("Transaction History button clicked");
-    System.out.println("Transaction list: " + transaction);
             new TransactionHistory(username,accounts,transaction);
             frame.dispose();
+        });
+        
+        JButton button5 = new JButton("Transfer Money");
+        button5.addActionListener( e -> {
+            
         });
         
         welcomePanel.add(welcomeField);

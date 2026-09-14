@@ -9,10 +9,10 @@ public class TransactionList {
     private double amount;
     private String type;
 
-    public TransactionList(int accountID, double amount, String type) {
+    public TransactionList(int accountID, String type, double amount) {
         this.accountID = accountID;
-        this.amount = amount;
         this.type = type;
+        this.amount = amount;
     }
 
     public int getAccountID() {

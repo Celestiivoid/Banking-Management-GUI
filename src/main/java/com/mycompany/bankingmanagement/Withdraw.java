@@ -23,7 +23,8 @@ public class Withdraw {
     private ArrayList<TransactionList> transaction;
     private String username;
     
-    public Withdraw(String username,ArrayList<Account> accounts) {
+    public Withdraw(String username,ArrayList<Account> accounts,ArrayList<TransactionList> transaction) {
+        this.transaction = transaction;
         this.username = username;
         this.accounts = accounts;
         setupGUI();
@@ -107,6 +108,7 @@ public class Withdraw {
                     }
                     account.setInitialDep(afterBalance);
                     balance.setText(String.valueOf(account.getInitialDep()));
+                    transaction.add(new TransactionList(account.getAccNo(),"Withdraw",convertedAmount));
                     break;
                 }
             }

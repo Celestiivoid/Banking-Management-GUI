@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
@@ -22,10 +21,11 @@ public class CreateAccount {
     private JComboBox <String> accountType;
     private JTextField initialDep;
     
-    private ArrayList<TransactionList> transaction;
     private ArrayList<Account> accounts = new ArrayList<>();
+    private ArrayList<TransactionList> transaction = new ArrayList<>();
     
-    public CreateAccount(ArrayList<Account> accounts) {
+    public CreateAccount(ArrayList<Account> accounts,ArrayList<TransactionList> transaction) {
+        this.transaction = transaction;
         this.accounts = accounts;
         createGUI();
     }
@@ -100,6 +100,23 @@ public class CreateAccount {
             int convertedAccNo = Integer.parseInt(accNoField);
             double convertedInitial = Double.parseDouble(depositField);
             
+            if(convertedAccNo < 1000 || convertedAccNo > 9999) {
+                JOptionPane.showMessageDialog(frame,"Must enter 4 digits for account number.");
+                return;
+            }
+            
+            if(convertedInitial < 0) {
+                JOptionPane.showMessageDialog(frame,"Initial deposit must be more than 0.");
+                return;
+            }
+            
+            for(Account account : accounts) {
+                if(convertedAccNo == account.getAccNo()) {
+                    JOptionPane.showMessageDialog(frame,"Account number already exist.");
+                    return;
+                }
+            }
+            
             Account newAccount = new Account(convertedAccNo,nameField,typeField,convertedInitial);
             accounts.add(newAccount);
             
@@ -116,6 +133,7 @@ public class CreateAccount {
 
     public static void main(String[] args) {
         ArrayList<Account> accounts = new ArrayList<>();
-        new CreateAccount(accounts);
+        ArrayList<TransactionList> transaction = new ArrayList<>();
+        new CreateAccount(accounts,transaction);
     }
 }

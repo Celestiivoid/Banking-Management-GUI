@@ -7,14 +7,10 @@ package com.mycompany.bankingmanagement;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class TransactionHistory {
@@ -46,7 +42,7 @@ public class TransactionHistory {
         buttonPanel.setLayout(new GridLayout(1,2));
         mainPanel.setLayout(new GridLayout(3,1));
         
-        String columns [] = {"Account ID","Amount","Type"};
+        String columns [] = {"Account ID","Type","Amount"};
         transactionModel  = new DefaultTableModel(columns,0);
         transactionTable = new JTable(transactionModel);
         displayTransaction();
@@ -59,12 +55,11 @@ public class TransactionHistory {
             frame.dispose();
         });
         
-        buttonPanel.add(button1);
         
         mainPanel.add(formPanel);
         mainPanel.add(buttonPanel);
         mainPanel.add(scrollPane);
-        
+        buttonPanel.add(button1);
         frame.add(mainPanel);
         frame.setVisible(true);
     }
@@ -72,8 +67,8 @@ public class TransactionHistory {
         for(TransactionList transactions : transaction) {
             transactionModel.addRow(new Object[] {
             transactions.getAccountID(),
-            transactions.getAmount(),
-            transactions.getType()
+            transactions.getType(),
+            transactions.getAmount()
         });
         }
     }

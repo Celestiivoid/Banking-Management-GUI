@@ -9,8 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
@@ -68,7 +66,7 @@ public class Login {
         
         JButton button2 = new JButton("to Account Creation");
         button2.addActionListener( e-> {
-            new CreateAccount(accounts);
+            new CreateAccount(accounts,transaction);
             frame.dispose();
         });
         
