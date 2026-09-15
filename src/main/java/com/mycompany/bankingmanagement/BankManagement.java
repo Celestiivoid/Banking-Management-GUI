@@ -97,7 +97,8 @@ public class BankManagement {
         
         JButton button5 = new JButton("Transfer Money");
         button5.addActionListener( e -> {
-            
+            new Transfer(username,accounts,transaction);
+            frame.dispose();
         });
         
         welcomePanel.add(welcomeField);
@@ -112,6 +113,7 @@ public class BankManagement {
         buttonPanel.add(button2);
         buttonPanel.add(button3);
         buttonPanel.add(button4);
+        buttonPanel.add(button5);
         
         mainPanel.add(welcomePanel);
         mainPanel.add(formPanel);
