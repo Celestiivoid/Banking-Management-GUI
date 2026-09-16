@@ -106,7 +106,38 @@ public class Transfer {
         frame.setVisible(true);
     }
     public void transfer() {
+        String amountField = amount.getText();
+        String userField = accountNm.getText();
+        String balanceField = accountBal.getText();
+        String accNumberField = accountNo.getText();
         
+        if(amountField.isEmpty()) {
+            JOptionPane.showMessageDialog(frame,"amount field is required to be filled out.","error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            double convertedAmount = Double.parseDouble(amountField);
+            double convertedBalance = Double.parseDouble(balanceField);
+            int convertedAccNumber = Integer.parseInt(accNumberField);
+            
+            for(Account account : accounts) {
+                if(userField.equals(account.getAccNm())) {
+                    if(convertedAccNumber == account.getAccNo()) {
+                        Account currentBalance = accounts.get(accounts.indexOf(account.getAccNo()) + 1);
+                        Double afterTransaction = convertedBalance - convertedAmount;
+                        currentBalance.setInitialDep(afterTransaction);
+                        accountBal.setText(String.valueOf(account.getInitialDep()));
+                        JOptionPane.showMessageDialog(frame,"Successfully transferred " 
+                            + amountField + " to " 
+                            + userField,"Success!",JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    }
+                }
+            }
+        } catch (NumberFormatException error) {
+            JOptionPane.showMessageDialog(frame,"Numbers only!","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
     public void search() {
         String accNoField = accountNo.getText();
