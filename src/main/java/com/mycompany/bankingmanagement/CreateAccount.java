@@ -112,7 +112,7 @@ public class CreateAccount {
             
             for(Account account : accounts) {
                 if(convertedAccNo == account.getAccNo()) {
-                    JOptionPane.showMessageDialog(frame,"Account number already exist.");
+                    JOptionPane.showMessageDialog(frame,"Account number already exist in the system.");
                     return;
                 }
             }
