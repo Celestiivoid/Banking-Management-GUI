@@ -123,7 +123,7 @@ public class CreateAccount {
             JOptionPane.showMessageDialog(frame,"Account creation successful!","Success!",JOptionPane.INFORMATION_MESSAGE);
             
         } catch (NumberFormatException error) {
-            JOptionPane.showMessageDialog(frame,"Numbers only!","Invalid!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame,"Numbers only.","Invalid!",JOptionPane.ERROR_MESSAGE);
             return;
         }
     }
