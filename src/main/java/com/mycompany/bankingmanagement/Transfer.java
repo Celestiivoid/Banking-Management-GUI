@@ -112,7 +112,7 @@ public class Transfer {
         String accNumberField = accountNo.getText();
         
         if(amountField.isEmpty()) {
-            JOptionPane.showMessageDialog(frame,"amount field is required to be filled out.","error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame,"amount field is required to be filled out. Please try again.","error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
